@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="survey_form_inherit_custom" model="ir.ui.view">
+            <field name="name">Form view for survey custom</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='users_login_required']" position="after">
+                    <field name="ignore_survey_evaluation"/>
+                    <field name="is_applicant_questionare"/>
+                </xpath>
+                <xpath expr="//page[@name='options']//group[@name='scoring']" position="after">
+                    <group string="Recruitment" groups="hr_recruitment.group_hr_recruitment_manager,hr_recruitment.group_hr_recruitment_user">
+                        <field name="applicant_id" string="Applicant"/>
+                    </group>
+                    <gorup groups="hr_recruitment.group_hr_recruitment_manager,hr_recruitment.group_hr_recruitment_user">
+
+                    </gorup>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="survey_user_input_custom" model="ir.ui.view">
+            <field name="name">survey user_input custom</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='access_token']" position="after">
+                    <field name="survey_state" string="state" invisible="1"/>
+                    <field name="active_interviewer_id"/>
+<!--                    <field name="survey_questions_ids" string="survey questions">-->
+<!--                            <tree>-->
+<!--                                <field name="question_id"/>-->
+<!--                            </tree>-->
+<!--                    </field>-->
+                    <field name="applicant_id" string="Applicant" attrs="{'invisible': [('survey_state', '!=', 'closed')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

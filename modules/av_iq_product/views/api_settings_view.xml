@@ -1,0 +1,66 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+    <data>
+
+        <record id="api_settings_view_tree" model="ir.ui.view">
+            <field name="name">api.settings.tree</field>
+            <field name="model">api.settings</field>
+            <field name="arch" type="xml">
+                <tree string="Product source">
+                    <field name="name"/>
+                    <field name="user_name"/>
+                    <field name="clientid"/>
+                    <field name="uid"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="api_settings_view_form" model="ir.ui.view">
+            <field name="name">api.settings.form</field>
+            <field name="model">api.settings</field>
+            <field name="arch" type="xml">
+                <form string="API Setting" create="1">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Credentials">
+                                <group name="">
+                                    <field name="user_name" required="1"/>
+                                    <field name="password" required="1" password="True"/>
+                                    <field name="clientid"/>
+                                    <field name="uid" required="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="api_settings_view_action" model="ir.actions.act_window">
+            <field name="name">API Setting</field>
+            <field name="res_model">api.settings</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new API source
+                </p>
+            </field>
+        </record>
+
+
+
+        <menuitem
+                id="menu_api_settings"
+                parent="menu_av_iq_config"
+                action="api_settings_view_action"
+                groups=""
+                name="API Setting"
+                sequence="10"/>
+
+    </data>
+</odoo>

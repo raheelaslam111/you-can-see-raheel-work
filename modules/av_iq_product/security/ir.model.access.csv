@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_api_settings,api.settings,model_api_settings,,1,1,1,1
+
+access_manufacturer_main,manufacturer.main,model_manufacturer_main,,1,1,1,1
+access_manufacturer_lines,manufacturer.lines,model_manufacturer_lines,,1,1,1,1
+
+access_categories_main,categories.main,model_categories_main,,1,1,1,1
+access_categories_lines,categories.lines,model_categories_lines,,1,1,1,1
+
+access_product_main,product.main,model_product_main,,1,1,1,1
+access_product_lines,product.lines,model_product_lines,,1,1,1,1
+access_product_specs,product.specs,model_product_specs,,1,1,1,1
+
+access_product_product_specs,product.product.specs,model_product_product_specs,,1,1,1,1
+
+

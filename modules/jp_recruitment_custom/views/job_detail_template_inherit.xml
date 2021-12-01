@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="website_hr_recruitment_temp_index_inherit" inherit_id="website_hr_recruitment.index">
+            <xpath expr="//p[@class='mt16 mb0 css_editable_mode_hidden']" position="replace">
+                <!--                <p t-esc="job.description"-->
+                />
+            </xpath>
+        </template>
+        <template id="website_hr_recruitment_temp_inherit" inherit_id="website_hr_recruitment.detail">
+            <xpath expr="//div[@t-field='job.website_description']" position="replace">
+                <div class="col" style="text-align:left;">
+                    <h6 style="margin-left:100px;">
+                        <strong>About Us:</strong>
+                    </h6>
+                    <div style="margin-left:97px;">
+                        <span t-if="job.company_id.company_vision">&quot;</span>
+                        <span t-field="job.company_id.company_vision"/>
+                        <span t-if="job.company_id.company_vision">&quot;</span>
+                    </div>
+                    <div style="margin-left:100px;" t-field="job.co_intro_job_posting"/>
+                    <!--                   <br/>-->
+                    <!--                       <t t-foreach="job.get_all_related_recruitment_intro()" t-as="accountibility">-->
+                    <!--                          <div style="margin-left:100px;" t-field="accountibility.recruitment_intro"/>-->
+                    <!--                      </t>-->
+                </div>
+                <br/>
+                <div class="col" style="text-align:left;">
+                    <h6 style="margin-left:100px;">
+                        <strong>Our Values:</strong>
+                    </h6>
+                    <t t-foreach="job.company_id.core_value_ids" t-as="refs">
+                        <div style="margin-left:90px;">
+                            <ul>
+                                <li>
+                                    <span t-field="refs.core_value_description"/>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--                          <div style="margin-left:100px;" t-field="refs.core_value_description"/>-->
+                    </t>
+                </div>
+                <br/>
+                <div class="col" style="text-align:left;">
+                    <h6 style="margin-left:100px;">
+                        <strong>The Position:</strong>
+                    </h6>
+                    <div style="margin-left:100px;" t-field="job.x_studio_get_it"/>
+                </div>
+                <!--                <div class="col" style="text-align:left;" t-if="job.position_history">-->
+                <!--                    <h6 style="margin-left:100px;"><strong>Position History:</strong></h6>-->
+                <!--                    <div style="margin-left:100px;" t-field="job.position_history"/>-->
+                <!--                </div>-->
+                <!--               <div class="col" style="text-align:left;margin-top:15px;">-->
+                <!--                   <h6 style="margin-left:100px;"><strong>Skills:</strong></h6>-->
+                <!--                   <ul style="margin-left:100px;">-->
+                <!--                       <t t-foreach="job.soft_skill_ids" t-as="refs">-->
+                <!--                       <li><span t-field="refs.description"/></li>-->
+                <!--                       </t>-->
+                <!--                   </ul>-->
+                <!--               </div>-->
+                <br/>
+                <div class="col" style="text-align:left;">
+                    <!--                    t-if="job.position_history"-->
+                    <h6 style="margin-left:100px;">
+                        <strong>You:</strong>
+                    </h6>
+                    <div style="margin-left:100px;" t-field="job.x_studio_want_it"/>
+                    <div style="margin-left:100px;" t-field="job.x_studio_capacity_emotional"/>
+                    <div style="margin-left:100px;" t-field="job.x_studio_capacity_intellectual"/>
+                    <div style="margin-left:100px;" t-field="job.x_studio_capacity_physicalresources"/>
+                    <div style="margin-left:100px;" t-field="job.x_studio_capacity_time"/>
+                    <div style="margin-left:100px;" t-field="job.x_studio_capacity_skills"/>
+                    <div style="margin-left:100px;" t-field="job.experience"/>
+                </div>
+                <br/>
+                <div class="col" style="text-align:left;">
+                    <h6 style="margin-left:100px;">
+                        <strong>Compensation:</strong>
+                    </h6>
+                    <div style="margin-left:100px;" t-field="job.comp_benefits_perks"/>
+                </div>
+                <!--                <div class="col" style="text-align:left;" t-if="job.position_history">-->
+                <!--                    <h6 style="margin-left:100px;"><strong>Compensation/Benefits:</strong></h6>-->
+                <!--                    <div style="margin-left:100px;" t-field="job.comp_benefits_perks"/>-->
+                <!--                </div>-->
+                <br/>
+                <div class="col" style="text-align:left;">
+                    <!--                    <h6 style="margin-left:100px;"><strong>Other:</strong></h6>-->
+                    <div style="margin-left:100px;font-style: italic;font-size: 9px;">
+                        Please note this job description is not designed to cover or contain a comprehensive listing of activities,
+                        duties, or responsibilities that are required of the employee for this job. Duties, responsibilities, and
+                        activities may change at any time with or without notice. we are an equal opportunity employer. Qualified applicants
+                        shall be considered for all positions without regard to any status protected by federal, state,or local law.
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

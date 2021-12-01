@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_select_gift_wizard_form" model="ir.ui.view">
+            <field name="name">product.select.gift.wizard.form</field>
+            <field name="model">product.select.gift.wizard</field>
+            <field name="groups_id" eval="[(4,ref('base.group_user'))]"/>
+            <field name="arch" type="xml">
+                <form string="Select Product &amp; create lines">
+                    <field name="order_id" readonly="1"/>
+                    <field name="product_ids">
+                        <tree>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                    <field name="delivery_set" invisible="1"/>
+                    <field name="is_all_service" invisible="1"/>
+                    <field name="recompute_delivery_price" invisible="1"/>
+                    <field name="order_line" invisible="1"/>
+                    <footer>
+                        <button string="Select" name="gift_saleorder_line" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+<!--       <record id="product_select_gift_wizard_action" model="ir.actions.act_window">-->
+<!--           <field name="name">Select Products</field>-->
+<!--           <field name="res_model">product.select.gift.wizard</field>-->
+<!--           <field name="view_mode">form</field>-->
+<!--           <field name="target">new</field>-->
+<!--           <field name="context">{'default_order_id': active_id}</field>-->
+<!--       </record>-->
+
+    </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="purchase_order_warehouse_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.warehouse</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='purchase_delivery_invoice']/group/group" position="inside">
+                    <field name="warehouse_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'default_state': 'draft', 'default_warehouse_id': warehouse_id}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="inside">
+                    <field name="warehouse_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_tree_inherits" model="ir.ui.view">
+            <field name="name">purchase_order_line_tree_inherits</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='order_id']" position="after">
+                    <field name="warehouse_dev" invisible="1"/>
+                    <field name="warehouse_id"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="purchase_order_line_form2_inherits" model="ir.ui.view">
+            <field name="name">purchase_order_line_form2_inherits</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_planned']" position="after">
+                    <field name="warehouse_dev" invisible="1"/>
+                    <field name="warehouse_id" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

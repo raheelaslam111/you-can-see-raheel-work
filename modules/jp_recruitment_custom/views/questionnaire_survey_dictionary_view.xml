@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="questionnaire_survey_dictionary_view_form" model="ir.ui.view">
+            <field name="name">questionnaire_survey_dictionary_view_form</field>
+            <field name="model">questionare.survey.dictionary</field>
+            <field name="arch" type="xml">
+                <form string="Questionnaire Survey Dictionary">
+                    <sheet>
+                        <group>
+                            <field name="recruitment_stage_id"/>
+                            <field name="survey_id"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="questionnaire_survey_dictionary_view_tree" model="ir.ui.view">
+            <field name="name">questionnaire_survey_dictionary_view_tree</field>
+            <field name="model">questionare.survey.dictionary</field>
+            <field name="arch" type="xml">
+                <tree string="questionnaire_survey_dictionary_tree">
+                    <field name="recruitment_stage_id"/>
+                    <field name="survey_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

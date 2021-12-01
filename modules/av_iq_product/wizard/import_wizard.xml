@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_import_api_data" model="ir.ui.view">
+        <field name="name">import.data</field>
+        <field name="model">import.api.data</field>
+        <field name="arch" type="xml">
+            <form string="Import Data">
+                <group colspan="4">
+                    <field name="product_ids" readonly="1"/>
+                </group>
+                <footer>
+                    <button icon="fa-cogs" string="Create Products" name="import_data" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <act_window
+            id="action_import_api_data"
+            name="Create Products"
+            src_model="product.lines"
+            res_model="import.api.data"
+            view_type="form"  view_mode="form" multi="False"
+            key2="client_action_multi" target="new"
+    />
+
+</odoo>

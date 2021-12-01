@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="api.settings" id="demo_api">
+            <field name="name">Demo API</field>
+            <field name="user_name">Continuant</field>
+            <field name="clientid">7c9c9a1772a74d37b3c5a6bfc94e0669</field>
+            <field name="password">Kehotgs$5467</field>
+            <field name="uid">Continuant</field>
+        </record>
+    </data>
+
+</odoo>

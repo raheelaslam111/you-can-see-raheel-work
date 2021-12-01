@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_normal_custom_action" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="limit">99999999</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_order_form_saleorder_button" model="ir.ui.view">
+            <field name="name">sale.order.button.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='preview_sale_order']" position="before">
+                     <button name="%(saleorder_product_smartbutton.product_normal_custom_action)d"
+                            type="action"
+                             context="{'custom_order_id':context.get('id'), 'search_default_categ_id': 1}"
+                            class="oe_stat_button"
+                            icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Add Product(s)</span>
+                            </div>
+                     </button>
+                    <button name="%(saleorder_product_smartbutton.product_normal_custom_action)d"
+                            type="action"
+                            context="{'custom_order_id':context.get('id'), 'search_default_categ_id': 1}"
+                            class="oe_stat_button"
+                            icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Add Gift(s)</span>
+                            </div>
+                     </button>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="partner_email" string="Email"/>
+                    <field name="partner_phone" string="Phone"/>
+                    <field name="for_compute_discount" invisible="1"/>
+                </xpath>
+                <xpath expr="//group[@name='order_details']" position="inside">
+                        <field name="total_count_products" style="font-weight: bold;"/>
+                        <field name="delivery_number" style="font-weight: bold;"/>
+                        <field name="amount_total" string='Total Amount' style="font-weight: bold;"/>
+                </xpath>
+<!--                <xpath expr="//field[@name='partner_shipping_id']" position="after">-->
+<!--                    <field name="total_count_products"/>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+
+
+        <record id="product_select_wizard_act" model="ir.actions.act_window">
+            <field name="name">Add Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.select.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="saleorder_product_smartbutton.product_select_wizard_wizard_form"/>
+            <field name="context">{'default_order_id': context.get('custom_order_id'),'default_product_ids':active_ids}</field>
+            <field name="target">new</field>
+            <field name="help">This wizard will add the products in sale order and update the shipping method in sale order.</field>
+            <field name="binding_model_id" ref="product.model_product_product" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+
+        <record id="product_select_gift_wizard_form_act" model="ir.actions.act_window">
+            <field name="name">Add Gifts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.select.gift.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="saleorder_product_smartbutton.product_select_gift_wizard_form"/>
+            <field name="context">{'default_order_id': context.get('custom_order_id'),'default_product_ids':active_ids}</field>
+            <field name="target">new</field>
+            <field name="help">This wizard will add the products in sale order as gifts.</field>
+            <field name="binding_model_id" ref="product.model_product_product" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+
+
+    </data>
+</odoo>

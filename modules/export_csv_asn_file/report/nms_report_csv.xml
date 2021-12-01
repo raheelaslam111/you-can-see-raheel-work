@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_export_nms_csv" model="ir.actions.server">
+            <field name="name">Export ASN-1 CSV</field>
+            <field name="model_id" ref="export_csv_asn_file.model_stock_picking"/>
+            <field name="binding_model_id" ref="export_csv_asn_file.model_stock_picking"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    res = model.export_nms_csv()
+                    action = res
+            </field>
+        </record>
+</odoo>

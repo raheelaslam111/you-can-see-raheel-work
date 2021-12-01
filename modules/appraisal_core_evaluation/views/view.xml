@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="core_evaluation_view_tree" model="ir.ui.view">
+            <field name="name">core.evaluation.tree</field>
+            <field name="model">core.evaluation</field>
+            <field name="arch" type="xml">
+                <tree string="Core Evaluation">
+                    <field name="get_it" options='{"bg_color": "#FFB6C1:get_it_white_color == False; #ADD8E6:get_it_bg_color == True","fg_color": "red:get_it_white_color == False; green:get_it_bg_color == True"}'/>
+                    <field name="get_it_color" invisible="1"/>
+                    <field name="get_it_bg_color" invisible="1"/>
+                    <field name="get_it_white_color" invisible="1"/>
+                    <field name="want_it" options='{"bg_color": "#FFB6C1:want_it_white_color == False; #ADD8E6:want_it_bg_color == True","fg_color": "red:want_it_white_color == False; green:want_it_bg_color == True"}'/>
+                    <field name="want_it_color" invisible="1"/>
+                    <field name="want_it_bg_color" invisible="1"/>
+                    <field name="want_it_white_color" invisible="1"/>
+                    <field name="capacity_emotional" options='{"bg_color": "#FFB6C1:capacity_emotional_white_color == False; #ADD8E6:capacity_emotional_bg_color == True","fg_color": "red:capacity_emotional_white_color == False; green:capacity_emotional_bg_color == True"}'/>
+                    <field name="capacity_emotional_color" invisible="1"/>
+                    <field name="capacity_emotional_bg_color" invisible="1"/>
+                    <field name="capacity_emotional_white_color" invisible="1"/>
+                    <field name="capacity_intellectual" options='{"bg_color": "#FFB6C1:capacity_intellectual_white_color == False; #ADD8E6:capacity_intellectual_bg_color == True","fg_color": "red:capacity_intellectual_white_color == False; green:capacity_intellectual_bg_color == True"}'/>
+                    <field name="capacity_intellectual_color" invisible="1"/>
+                    <field name="capacity_intellectual_bg_color" invisible="1"/>
+                    <field name="capacity_intellectual_white_color" invisible="1"/>
+                    <field name="capacity_physical" options='{"bg_color": "#FFB6C1:capacity_physical_white_color == False; #ADD8E6:capacity_physical_bg_color == True","fg_color": "red:capacity_physical_white_color == False; green:capacity_physical_bg_color == True"}'/>
+                    <field name="capacity_physical_color" invisible="1"/>
+                    <field name="capacity_physical_bg_color" invisible="1"/>
+                    <field name="capacity_physical_white_color" invisible="1"/>
+                    <field name="capacity_time" options='{"bg_color": "#FFB6C1:capacity_time_white_color == False; #ADD8E6:capacity_time_bg_color == True","fg_color": "red:capacity_time_white_color == False; green:capacity_time_bg_color == True"}'/>
+                    <field name="capacity_time_color" invisible="1"/>
+                    <field name="capacity_time_bg_color" invisible="1"/>
+                    <field name="capacity_time_white_color" invisible="1"/>
+                    <field name="appraisal_id"/>
+                </tree>
+            </field>
+        </record>
+
+<!--        <record id="core_evaluation_view_tree" model="ir.ui.view">-->
+<!--            <field name="name">core.evaluation.tree</field>-->
+<!--            <field name="model">core.evaluation</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Core Evaluation">-->
+<!--                    <field name="get_id"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+        <record id="core_evaluation_view_form" model="ir.ui.view">
+            <field name="name">core.evaluation.form</field>
+            <field name="model">core.evaluation</field>
+            <field name="arch" type="xml">
+                <form string="Core Evaluation" create="1">
+                    <sheet>
+                        <group>
+                            <group name="">
+                                <field name="get_it" attrs="{'invisible': ['|',('get_it','=',False),('get_it', 'in', ['3','4','5'])]}" style="background-color:#FFB6C1;color:red;"/>
+                                <field name="get_it" attrs="{'invisible': ['|',('get_it','=',False),('get_it', 'in', ['1','2','3'])]}" style="background-color:#ADD8E6;color:green;"/>
+                                <field name="get_it" attrs="{'invisible': ['|',('get_it','=',False),('get_it', '!=', '3')]}"/>
+                                <field name="get_it" attrs="{'invisible': [('get_it','!=',False)]}"/>
+
+                                <field name="want_it" attrs="{'invisible': ['|',('want_it','=',False),('want_it', 'in', ['3','4','5'])]}" style="background-color:#FFB6C1;color:red;"/>
+                                <field name="want_it" attrs="{'invisible': ['|',('want_it','=',False),('want_it', 'in', ['1','2','3'])]}" style="background-color:#ADD8E6;color:green;"/>
+                                <field name="want_it" attrs="{'invisible': ['|',('want_it','=',False),('want_it', '!=', '3')]}"/>
+                                <field name="want_it" attrs="{'invisible': [('want_it','!=',False)]}"/>
+
+                                <field name="capacity_emotional" attrs="{'invisible': ['|',('capacity_emotional','=',False),('capacity_emotional', 'in', ['3','4','5'])]}" style="background-color:#FFB6C1;color:red;"/>
+                                <field name="capacity_emotional" attrs="{'invisible': ['|',('capacity_emotional','=',False),('capacity_emotional', 'in', ['1','2','3'])]}" style="background-color:#ADD8E6;color:green;"/>
+                                <field name="capacity_emotional" attrs="{'invisible': ['|',('capacity_emotional','=',False),('capacity_emotional', '!=', '3')]}"/>
+                                <field name="capacity_emotional" attrs="{'invisible': [('capacity_emotional','!=',False)]}"/>
+
+                                <field name="capacity_intellectual" attrs="{'invisible': ['|',('capacity_intellectual','=',False),('capacity_intellectual', 'in', ['3','4','5'])]}" style="background-color:#FFB6C1;color:red;"/>
+                                <field name="capacity_intellectual" attrs="{'invisible': ['|',('capacity_intellectual','=',False),('capacity_intellectual', 'in', ['1','2','3'])]}" style="background-color:#ADD8E6;color:green;"/>
+                                <field name="capacity_intellectual" attrs="{'invisible': ['|',('capacity_intellectual','=',False),('capacity_intellectual', '!=', '3')]}"/>
+                                <field name="capacity_intellectual" attrs="{'invisible': [('capacity_intellectual','!=',False)]}"/>
+
+                                <field name="capacity_physical" attrs="{'invisible': ['|',('capacity_physical','=',False),('capacity_physical', 'in', ['3','4','5'])]}" style="background-color:#FFB6C1;color:red;"/>
+                                <field name="capacity_physical" attrs="{'invisible': ['|',('capacity_physical','=',False),('capacity_physical', 'in', ['1','2','3'])]}" style="background-color:#ADD8E6;color:green;"/>
+                                <field name="capacity_physical" attrs="{'invisible': ['|',('capacity_physical','=',False),('capacity_physical', '!=', '3')]}"/>
+                                <field name="capacity_physical" attrs="{'invisible': [('capacity_physical','!=',False)]}"/>
+
+                                <field name="capacity_time" attrs="{'invisible': ['|',('capacity_time','=',False),('capacity_time', 'in', ['3','4','5'])]}" style="background-color:#FFB6C1;color:red;"/>
+                                <field name="capacity_time" attrs="{'invisible': ['|',('capacity_time','=',False),('capacity_time', 'in', ['1','2','3'])]}" style="background-color:#ADD8E6;color:green;"/>
+                                <field name="capacity_time" attrs="{'invisible': ['|',('capacity_time','=',False),('capacity_time', '!=', '3')]}"/>
+                                <field name="capacity_time" attrs="{'invisible': [('capacity_time','!=',False)]}"/>
+
+                                <field name="appraisal_id"/>
+                            </group>
+                            <group name="">
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="appraisal_core_evaluation_action" model="ir.actions.act_window">
+            <field name="name">Core Evaluation</field>
+            <field name="res_model">core.evaluation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Core Evaluation"
+                  id="menu_core_evaluation_view_menu"
+                  parent="hr_appraisal.menu_hr_appraisal_configuration"
+                  action="appraisal_core_evaluation_action"
+                  sequence="99"/>
+
+
+        <record id="view_hr_appraisal_form_custom" model="ir.ui.view">
+            <field name="name">hr.appraisal.form.inherit</field>
+            <field name="model">hr.appraisal</field>
+            <field name="inherit_id" ref="hr_appraisal.view_hr_appraisal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/div//button[@name='action_open_goals']" position="before">
+                    <button class="oe_stat_button" name="action_open_core_evaluation" icon="fa-bullseye" type="object">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Core Evaluation</span>
+                            <span class="o_stat_text"><field name="core_evaluation_numbers" readonly="1"/></span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+
+        <template id="my_assets_id" name="website assets for my module" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/appraisal_core_evaluation/static/src/css/color.css"/>
+<!--                <script type="text/javascript" src="/appraisal_core_evaluation/static/src/js/selection.js"/>-->
+            </xpath>
+        </template>
+
+
+    </data>
+</odoo>

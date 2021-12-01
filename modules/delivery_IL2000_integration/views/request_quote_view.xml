@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--<record id="request_quote_tree" model="ir.ui.view">-->
+<!--    <field name="name">shipping.quote.tree</field>-->
+<!--    <field name="model">shipping.quote</field>-->
+<!--    <field name="arch" type="xml">-->
+<!--        <tree string="">-->
+<!--            <field name="name"/>-->
+<!--            <field name="state"/>-->
+<!--        </tree>-->
+<!--    </field>-->
+<!--</record>-->
+
+<!--<record id="request_quote_view_form" model="ir.ui.view">-->
+<!--    <field name="name">shipping.quote.form</field>-->
+<!--    <field name="model">shipping.quote</field>-->
+<!--    <field name="arch" type="xml">-->
+<!--        <form string="">-->
+<!--            <header>-->
+<!--                <field name="state" widget="statusbar" statusbar_visible="draft,quote_received"/>-->
+<!--            </header>-->
+<!--            <sheet>-->
+<!--                <group>-->
+<!--                    <field name="name" readonly="1"></field>-->
+<!--                </group>-->
+<!--                <group><field name="so_ref" readonly="1"/></group>-->
+<!--                <group>-->
+<!--                    <field name="quote_ids" options="{'limit': 10, 'create': false, 'create_edit': false}">-->
+<!--                        <tree delete="false">-->
+<!--                            <field name="ref" readonly="1"/>-->
+<!--                            <field name="logistic_provider" readonly="1" />-->
+<!--                            <field name="shipid" readonly="1"/>                           -->
+<!--                            <field name="shipping_weight"/>-->
+<!--                            <field name="weight_uom" nolabel="1" />-->
+<!--                            <field name="rate_ids"  />-->
+<!--                            <field name="state" string="Shipment Status"/>-->
+<!--                            <button name="get_shippment_rates" type="object" string="Fetch Rate" class="oe_highlight"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </group>-->
+<!--            </sheet>-->
+<!--        </form>-->
+<!--    </field>-->
+<!--</record>-->
+
+<record id="view_form_shiping_quote_line"  model="ir.ui.view">
+    <field name="name">shipping.quote.form</field>
+    <field name="model">shipping.quote.line</field>
+    <field name="arch" type="xml">
+        <form string="">
+            <header modifiers="{}">
+                <button string="Accept Quote" class="oe_highlight" type="object" name="accept_quote_function"
+                attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                <field name="state" widget="statusbar" readonly="1" />
+            </header>
+            <sheet>
+            <group>
+                <group>
+                    <field name="ref"  readonly="1"/>
+                    <field name="stock_picking_id"  readonly="1"/>
+                    <field name="logistic_provider" readonly="1"/>
+                </group>
+
+                <group>
+                <field name="shipid"  readonly="1"/>
+                <field name="bol_no" readonly="1"/>
+                <field name="shipping_weight" readonly="1" />
+            </group>
+            <group>
+                <field name="weight_uom" readonly="1" />
+                <field name="delivery_date" readonly="1" />
+            </group>
+<!--            <group><button name="get_shippment_rates" type="object" string="Fetch Rate" class="oe_highlight"/></group>-->
+            </group>
+            <group >
+                <field name="rate_ids" options="{'limit': 10, 'create': false, 'create_edit': false}"/>
+            </group></sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+            </div>
+            </form>
+            </field>
+    </record>
+
+    <record id="view_tree_shiping_quote_line" model="ir.ui.view">
+        <field name="name">shipping.quote.line.tree</field>
+        <field name="model">shipping.quote.line</field>
+        <field name="arch" type="xml">
+            <tree delete="false" create="false">
+                <field name="stock_picking_id"  readonly="1"/>
+                <field name="logistic_provider" readonly="1" />
+                <field name="so_ref" invisible="1" />
+                <field name="shipid" readonly="1"/>
+                <field name="bol_no" readonly="1"/>
+                <field name="shipping_weight"/>
+                <field name="weight_uom" nolabel="1" />
+                <field name="rate_ids"  />
+                <field name="state" string="Shipment Status"/>
+            </tree>
+        </field>
+    </record>
+
+<record id="request_quote_line_action_view" model="ir.actions.act_window">
+    <field name="name">Request Quote</field>
+    <field name="res_model">shipping.quote.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+        
+        </p>
+    </field>
+</record>
+
+<record id="shipping_quote_line_rates_tree" model="ir.ui.view">
+    <field name="name">shipping.quote.line.rates.view.tree</field>
+    <field name="model">shipping.quote.line.rates</field>
+    <field name="arch" type="xml">
+        <tree delete="false" edit="True" editable="bottom">
+            <field name="carrier_id" readonly="1"/>
+            <field name="carriername" readonly="1"/>
+            <field name="rate" readonly="1"/>
+            <field name="transit_time" readonly="1"/>
+            <field name="selected_rate"/>
+        </tree>
+    </field>
+</record>
+
+<menuitem
+    id="request_quote_action_menu"
+    name="Shiping Quotes"
+    action="request_quote_line_action_view"
+    parent="stock.menu_stock_warehouse_mgmt"
+    sequence="136"/>
+
+
+</odoo>

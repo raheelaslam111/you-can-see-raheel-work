@@ -1,0 +1,68 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+    <data>
+
+        <record id="manufacturer_main_view_tree" model="ir.ui.view">
+            <field name="name">manufacturer.main.tree</field>
+            <field name="model">manufacturer.main</field>
+            <field name="arch" type="xml">
+                <tree string="Manufacturer source">
+                    <field name="api_id"/>
+                    <field name="url"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="manufacturer_main_view_form" model="ir.ui.view">
+            <field name="name">manufacturer.main.form</field>
+            <field name="model">manufacturer.main</field>
+            <field name="arch" type="xml">
+                <form string="Manufacturer source" create="1">
+                    <sheet>
+                        <header>
+                            <button name="fetch_manufacturer" string="Fetch Manufacturers" type="object" class="btn-primary"/>
+                        </header>
+                        <group>
+                            <group name="">
+                                <field name="api_id" required="1"/>
+                                <field name="url"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Manufacturer Lines">
+                                <field name="manufacturer_lines_ids">
+                                    <tree create="0">
+                                        <field name="manufacturer"/>
+                                        <field name="product_count"/>
+                                        <field name="manufacturer_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="manufacturer_main_view_action" model="ir.actions.act_window">
+            <field name="name">Manufacturer</field>
+            <field name="res_model">manufacturer.main</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new Review source
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="menu_review_source"
+                parent="menu_av_iq_config"
+                action="manufacturer_main_view_action"
+                groups=""
+                name="Manufacturer"
+                sequence="2"/>
+
+    </data>
+</odoo>

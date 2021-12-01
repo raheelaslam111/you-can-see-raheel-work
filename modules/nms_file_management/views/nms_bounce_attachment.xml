@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<!--    ********* this is the wizard view for download .txt file ***************-->
+        <record id="nms_bounce_attachment_download_view" model="ir.ui.view">
+            <field name="name">nms.bounce.attachment.download.form</field>
+            <field name="model">nms.bounce.attachment.download</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group string="Download you Attachment">
+                            <field name="name" invisible="1"/>
+                            <field name="downloadable_attachment" filename="name"/>
+                        </group>
+                    <footer>
+                    <button string="Discard" class="btn-default" special="cancel"/>
+                    </footer>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+<!--************this is the wizard view for downloading ASN UDF multiple attachments******************-->
+        <record id="udf_asn_report_multi_view" model="ir.ui.view">
+            <field name="name">udf.asn.report.multi.form</field>
+            <field name="model">udf.asn.report.multi</field>
+            <field name="arch" type="xml">
+            <form>
+                <group>
+                <group string="Download you Attachment">
+                    <field name="name" invisible="1"/>
+                    <field name="downloadable_attachment" filename="name"/>
+                </group>
+                <footer>
+                </footer>
+                </group>
+            </form>
+            </field>
+        </record>
+
+
+        <record id="udf_asn_report_multi_wizard" model="ir.ui.view">
+            <field name="name">udf.asn.report.multi.wizard.form</field>
+            <field name="model">udf.asn.report.multi.wizard</field>
+            <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string="Download you Attachment">
+                        <field name="attachment_ids" readonly="1">
+                            <tree create="0">
+                            <field name="name"/>
+                            <field name="downloadable_attachment" filename="name"/>
+                            </tree>
+                        </field>
+                </group>
+                <footer>
+                <button string="Discard" class="btn-default" special="cancel"/>
+                </footer>
+                </group>
+            </form>
+            </field>
+        </record>
+<!--************this is the wizard view for downloading ASN UDF multiple attachments******************-->
+        <record id="udf_activation_report_multi_view" model="ir.ui.view">
+            <field name="name">udf.activation.report.multi.form</field>
+            <field name="model">udf.activation.report.multi</field>
+            <field name="arch" type="xml">
+            <form>
+                <group>
+                <group string="Download you Attachment">
+                    <field name="name" invisible="1"/>
+                    <field name="downloadable_attachment" filename="name"/>
+                </group>
+                <footer>
+                </footer>
+                </group>
+            </form>
+            </field>
+        </record>
+
+
+        <record id="activation_report_multi" model="ir.ui.view">
+            <field name="name">activation.report.multi.form</field>
+            <field name="model">activation.report.multi</field>
+            <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string="Download you Attachment">
+                        <field name="attachment_ids" readonly="1">
+                            <tree create="0">
+                            <field name="name"/>
+                            <field name="downloadable_attachment" filename="name"/>
+                            </tree>
+                        </field>
+                </group>
+                <footer>
+                <button string="Discard" class="btn-default" special="cancel"/>
+                </footer>
+                </group>
+            </form>
+            </field>
+        </record>
+
+
+
+<!--    ********this is the sequence for .txt file name****************-->
+        <record model="ir.sequence" id="seq_nms_bound_attachment">
+            <field name="name">Nmsboundattachment</field>
+            <field name="code">Nmsboundattachment</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

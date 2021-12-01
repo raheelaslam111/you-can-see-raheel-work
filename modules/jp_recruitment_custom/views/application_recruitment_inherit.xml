@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--         <record id="view_job_position_form_inherit" model="ir.ui.view">-->
+        <!--            <field name="name">hr.job.form</field>-->
+        <!--            <field name="model">hr.job</field>-->
+        <!--            <field name="inherit_id" ref="hr.view_hr_job_form"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <record id="hr_applicant_view_form_inherit_custom" model="ir.ui.view">
+            <field name="name">hr.applicant.form.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='archive_applicant']" position="after">
+                    <field name="stage_ids" invisible="1"/>
+                    <field name="link_visible" invisible="1"/>
+                    <button string="Evaluate" name="start_survey_custom_123" type="object"
+                            attrs="{'invisible': [('link_visible', '!=', True)]}" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//sheet//group[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet//separator[1]" position="attributes">
+                    <attribute name="style">margin-top:-40px;</attribute>
+                </xpath>
+                <xpath expr="//sheet//field[@name='description']" position="attributes">
+                    <attribute name="style">width:500px;</attribute>
+                </xpath>
+                <xpath expr="//sheet//group[1]" position="before">
+                    <group>
+                        <group>
+                            <!--                            <field name="company_id" options='{"no_open":True}' />-->
+                            <field name="email_from" widget="email"/>
+                            <!--                            <field name="survey_id"/>-->
+                            <field name="email_cc"/>
+                            <field name="partner_phone" widget="phone"/>
+                            <field name="city"/>
+                            <field name="state_id" class="o_address_state"/>
+                            <field name="categ_ids" widget="many2many_tags"
+                                   options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                            <field name="priority" widget="priority" string="Rating"/>
+                            <field name="company_id" options='{"no_open":True}'/>
+                            <field name="job_id"/>
+                            <field name="department_id"/>
+                            <field name="user_id" domain="[('share', '=', False)]"/>
+                            <field name="source_id"/>
+                            <field name="medium_id"/>
+                            <!-- <field name="ref_user_id"/> -->
+                        </group>
+                    </group>
+
+                </xpath>
+                <xpath expr="//sheet" position="inside">
+                    <notebook>
+                        <page string="Personality">
+                            <field name="personality_traits_ids" nolabel="1">
+                                <tree string="Personality Trait Score">
+                                    <field name="a"/>
+                                    <field name="b"/>
+                                    <field name="c"/>
+                                    <field name="d"/>
+                                    <field name="e"/>
+                                    <field name="l"/>
+                                    <field name="i"/>
+                                </tree>
+                                <form string="Personality Trait Score">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="a"/>
+                                                <field name="b"/>
+                                                <field name="c"/>
+                                            </group>
+                                            <group>
+                                                <field name="d"/>
+                                                <field name="e"/>
+                                                <field name="l"/>
+                                                <field name="i"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Evaluation" name="evaluation">
+                            <field name="survey_user_input_ids" nolabel="1"
+                                   field_value="average_of_suggestion" show_column_totals="False">
+                                <!--                                domain="[('applicant_id', '=', active_id), ('question_type', '=', 'matrix')]"-->
+                                <tree>
+                                    <field name="survey_id"/>
+                                    <field name="question_id"/>
+                                    <field name="matrix_row_id"/>
+                                    <field name="average_of_suggestion"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="survey_id"/>
+                                            <field name="question_id"/>
+                                            <field name="matrix_row_id"/>
+                                            <field name="average_of_suggestion"/>
+                                        </group>
+                                    </group>
+
+                                    <field name="interviewer_answer_ids">
+                                        <tree>
+                                            <field name="partner" string="Interviewer"/>
+                                            <field name="score"/>
+                                        </tree>
+                                    </field>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Qualifying Survey" name="qualifying_survey">
+                            <field name="questionare_survey_user_input_ids" nolabel="1">
+                                <!--                                domain="[('applicant_id', '=', active_id), ('question_type', '=', 'matrix')]"-->
+                                <tree>
+                                    <field name="survey_id"/>
+                                    <field name="question_id"/>
+                                    <field name="value_text_box"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="survey_id"/>
+                                            <field name="question_id"/>
+                                            <field name="value_text_box"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Other">
+                            <group>
+                                <group>
+                                    <field name="create_date"/>
+                                    <field name="create_uid"/>
+                                    <field name="write_date"/>
+                                    <field name="write_uid"/>
+                                    <field name="__last_update"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+                <xpath expr="//field[@name='personality_traits_ids']" position="before">
+                    <group name="trait_scores">
+                        <group name="trait_scores_score">
+                            <field name="cl_survey" string="Applicant CI Type"/>
+                            <field name="x_a_trait_score"/>
+                            <field name="x_b_trait_score"/>
+                            <field name="x_c_trait_score"/>
+                            <field name="x_d_trait_score"/>
+                            <field name="x_e_trait_score"/>
+                            <field name="x_l_trait_score"/>
+                            <field name="x_i_trait_score"/>
+                        </group>
+                        <group name="trait_scores_ideal">
+                            <field name="x_studio_a_trait_ideal_score"/>
+                            <field name="x_studio_a_trait_notes"/>
+                            <field name="x_studio_b_trait_ideal_score"/>
+                            <field name="x_studio_b_trait_notes"/>
+                            <field name="x_studio_c_trait_ideal_score"/>
+                            <field name="x_studio_c_trait_notes"/>
+                            <field name="x_studio_d_trait_ideal_score"/>
+                            <field name="x_studio_d_trait_notes"/>
+                            <field name="x_studio_e_trait_ideal_score"/>
+                            <field name="x_studio_e_trait_notes"/>
+                            <field name="x_studio_l_trait_ideal_score"/>
+                            <field name="x_studio_l_trait_notes"/>
+                            <field name="x_studio_i_trait_ideal_score"/>
+                            <field name="x_studio_i_trait_notes"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

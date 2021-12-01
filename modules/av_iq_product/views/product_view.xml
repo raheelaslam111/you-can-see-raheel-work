@@ -1,0 +1,166 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+    <data>
+
+        <record id="product_main_view_tree" model="ir.ui.view">
+            <field name="name">product.main.tree</field>
+            <field name="model">product.main</field>
+            <field name="arch" type="xml">
+                <tree string="Product source">
+                    <field name="user_name"/>
+                    <field name="password"/>
+                    <field name="clientid"/>
+                    <field name="url"/>
+                    <field name="uid"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="product_main_view_form" model="ir.ui.view">
+            <field name="name">product.main.form</field>
+            <field name="model">product.main</field>
+            <field name="arch" type="xml">
+                <form string="Product source" create="1">
+                    <sheet>
+                        <header>
+                            <button name="fetch_products" string="Fetch Products" type="object" class="btn-primary"/>
+                            <button name="create_av_product" string="Create Products" type="object" class="btn-primary"/>
+                        </header>
+                        <group>
+                            <group name="">
+                                <field name="user_name" required="1"/>
+                                <field name="password" required="1"/>
+                            </group>
+                            <group name="">
+                                 <field name="clientid"/>
+                                <field name="url"/>
+                            </group>
+                            <group>
+                                <field name="uid" required="1"/>
+                                <field name="pgnum"/>
+                            </group>
+                            <group>
+                                <field name="option" />
+                                <field name="pgsize"/>
+                            </group>
+                            <group>
+                                <field name="manufacturer_id" attrs="{'required' : [('option', '=', 'MFR')],'invisible': [('option', 'not in', ['MFR'])]}"/>
+                                <field name="categories_id" attrs="{'required' : [('option', '!=', 'MFR')],'invisible': [('option', 'in', ['MFR'])]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Product Lines">
+                                <field name="product_lines_ids">
+                                    <tree create="0" editable="True">
+                                        <field name="create_product"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="part_number" readonly="1"/>
+                                        <field name="upc_number" readonly="1"/>
+                                        <field name="model_number" readonly="1"/>
+                                        <field name="manufacturer" readonly="1"/>
+                                        <field name="manufacturer_id" readonly="1"/>
+                                        <field name="short_description" readonly="1"/>
+                                        <field name="image_spotlight" widget="image"/>
+                                        <field name="t1cat" readonly="1"/>
+                                        <field name="t2cat" readonly="1"/>
+                                        <field name="t3cat" readonly="1"/>
+                                        <field name="model_number_clean" readonly="1"/>
+                                        <field name="msrp" readonly="1"/>
+                                        <field name="row" readonly="1"/>
+                                        <field name="product_specs_ids" readonly="1"/>
+                                    </tree>
+                                    <form create="0" editable="True">
+                                        <sheet>
+                                            <field name="image_spotlight" widget="image" />
+                                            <group>
+                                               <group>
+                                                    <field name="create_product"/>
+                                                    <field name="name"/>
+                                                    <field name="part_number"/>
+                                                    <field name="upc_number"/>
+                                                </group>
+                                                <group>
+                                                    <field name="model_number"/>
+                                                    <field name="manufacturer"/>
+                                                    <field name="manufacturer_id"/>
+                                                    <field name="short_description"/>
+                                                </group>
+                                                <group>
+                                                    <field name="t1cat"/>
+                                                    <field name="t2cat"/>
+                                                    <field name="t3cat"/>
+                                                    <field name="model_number_clean"/>
+                                                </group>
+                                                <group>
+                                                    <field name="msrp"/>
+                                                    <field name="row"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                        <notebook>
+                                            <page string="Product Specifications">
+                                                <field name="product_specs_ids"/>
+                                            </page>
+                                        </notebook>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="product_main_view_action" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="res_model">product.main</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new Review source
+                </p>
+            </field>
+        </record>
+
+
+
+        <record id="product_specs_view_tree" model="ir.ui.view">
+            <field name="name">product.specs.tree</field>
+            <field name="model">product.specs</field>
+            <field name="arch" type="xml">
+                <tree string="Product Specs">
+                    <field name="specification_id"/>
+                    <field name="spec_name"/>
+                    <field name="spec_unit"/>
+                    <field name="spec_value"/>
+                    <field name="spec_group"/>
+                    <field name="spec_data_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_specs_view_action" model="ir.actions.act_window">
+            <field name="name">Product specs</field>
+            <field name="res_model">product.specs</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new product specs
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                id="menu_product_fetch_source"
+                parent="menu_review_main"
+                action="product_main_view_action"
+                groups=""
+                name="AV-IQ Product"
+                sequence="2"/>
+
+    </data>
+</odoo>

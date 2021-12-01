@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_partner_form_registration_custom" model="ir.ui.view">
+            <field name="name">res.partner.registration.c.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//group[1]" position="inside">
+                    <group string="Online Registration">
+                        <field name="reg_cnic"/>
+                        <field name="passport"/>
+                        <field name="contact_turk"/>
+                        <field name="nature_of_stay"/>
+                    </group>
+                    <group string="Online Registration">
+                        <field name="profession_detail"/>
+                        <field name="kimlik_number"/>
+                        <field name="turk_city"/>
+                        <field name="family_detail"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+</odoo>

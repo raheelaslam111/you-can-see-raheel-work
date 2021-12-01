@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_stock_production_lot_form_inherit" model="ir.ui.view">
+            <field name="name">view_stock_production_lot_form</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="UEDF" name="uedf">
+                        <group>
+                        <group>
+                            <field name="disposition_code"/>
+                            <field name="activation_status"/>
+                            <field name="activation_date"/>
+                            <field name="deactivation_date"/>
+                            <field name="sku"/>
+                        </group>
+                            <group>
+                                <field name="file_name"/>
+                                <field name="lock_status"/>
+                                <field name="fin_eligibility_date"/>
+                                <field name="phone_owner"/>
+                                <field name="valid_tac"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_export_nms_lot_activation_multi_report" model="ir.actions.server">
+            <field name="name">Export UEDF Activation</field>
+            <field name="model_id" ref="stock.model_stock_production_lot"/>
+            <field name="binding_model_id" ref="stock.model_stock_production_lot"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                res =model.multi_reports_Activation_through_action()
+                action = res
+            </field>
+        </record>
+
+        <record id="action_lot_export_nms" model="ir.actions.server">
+            <field name="name">Export NMS</field>
+            <field name="model_id" ref="stock.model_stock_production_lot"/>
+            <field name="binding_model_id" ref="stock.model_stock_production_lot"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                res = model.export_nms()
+                action = res
+            </field>
+        </record>
+
+    </data>
+</odoo>

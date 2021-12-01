@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_nms_bounce_attachment_download,nms.bounce.attachment.download,model_nms_bounce_attachment_download,,1,1,1,1
+access_nms_file_import,access.nms.file.import,model_nms_file_import,,1,1,1,0
+access_boost_file,access.boost.file,model_boost_file,,1,1,1,1
+access_cell_holidays,cell.holidays,model_cell_holidays,,1,1,1,1
+access_udf_asn_report_multi_wizard,udf.asn.report.multi.wizard,model_udf_asn_report_multi_wizard,,1,1,1,1
+access_udf_asn_report_multi,udf.asn.report.multi,model_udf_asn_report_multi,,1,1,1,1
+
+
+access_activation_report_multi,activation.report.multi,model_activation_report_multi,,1,1,1,1
+access_udf_activation_report_multi,udf.activation.report.multi,model_udf_activation_report_multi,,1,1,1,1

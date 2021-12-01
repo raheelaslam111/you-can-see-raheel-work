@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="uedf_xml_report" model="ir.actions.report">
+        <field name="name">UEDF Activation Only</field>
+        <field name="model">stock.production.lot</field>
+        <field name="report_type">qweb-xml</field>
+        <field name="xml_declaration">True</field>
+        <field name="xml_encoding">UTF-8</field>
+        <field name="report_name">nms_file_management.report_nms_uedf_docs</field>
+        <field name="report_file">nms_file_management.report_nms_uedf_docs</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <record id="uedf_xml_report_asn" model="ir.actions.report">
+        <field name="name">UEDF ASN Report</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-xml</field>
+        <field name="xml_declaration">True</field>
+        <field name="xml_encoding">UTF-8</field>
+        <field name="report_name">nms_file_management.report_nms_uedf_asn_docs</field>
+        <field name="report_file">nms_file_management.report_nms_uedf_asn_docs</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

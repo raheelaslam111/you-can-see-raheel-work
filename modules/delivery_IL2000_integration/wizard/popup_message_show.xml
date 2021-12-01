@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<odoo>
+	<record id="view_popup_message_show" model="ir.ui.view">
+		<field name="name">popup.message.show.form</field>
+		<field name="model">popup.message</field>
+		<field name="arch" type="xml">
+			<form string="Message Show " style="width:70%;">
+			    <group>
+				    <!-- <field name="name" style="margin-left:10px; font-weight:bold" nolabel="1"/> -->
+				</group>
+				<footer>
+					<button string="OK" class="oe_highlight" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<!-- <record id="act_partner_credit_limit_warning" model="ir.actions.act_window">
+		<field name="name">Parter Credit Limit Warning</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">partner.credit.limit.warning</field>
+		<field name="view_mode">form</field>
+		<field name="context">{}</field>
+		<field name="target">new</field>
+	</record> -->
+</odoo>

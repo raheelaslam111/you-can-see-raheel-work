@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+        <record id="boost_udef_file_form" model="ir.ui.view">
+            <field name="name">boost_file_view_form</field>
+            <field name="model">boost.file</field>
+            <field name="arch" type="xml">
+                <form string="Boost File">
+                    <sheet>
+                         <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="UDEF File"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="is_processed"/>
+                            </group>
+                            <group>
+                                <field name="udef_type"/>
+                            </group>
+                            <group>
+                                <field name="processed_date" attrs="{'invisible': [('is_processed', '!=', True)]}"/>
+                            </group>
+                            <group>
+                                <field name="processed_status" attrs="{'invisible': [('is_processed', '!=', True)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+
+
+                        <page name="IMEIs" string="IMEI">
+                    <field name="nms_file_imei" widget="one2many">
+                        <tree string="nms_file_imei" editable="0">
+                            <field name="imei"/>
+                            <field name="disposition_code" />
+                            <field name="state" string="IMEI Status"/>
+                            <field name="nms_status"  string="NMS Status" />
+<!--                            <field name="activation_date" string="UDEF Status"/>-->
+                        </tree>
+                    </field>
+
+                </page>
+ </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="boost_udef_file_tree" model="ir.ui.view">
+            <field name="name">boost_file_view_tree</field>
+            <field name="model">boost.file</field>
+            <field name="arch" type="xml">
+                <tree string="Boost UDEF Files">
+                    <field name="name"/>
+                    <field name="is_processed"/>
+                    <field name="processed_date"/>
+                    <field name="processed_status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="boost_udef_file_action" model="ir.actions.act_window">
+            <field name="name">Boost UDEF file</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">boost.file</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+<!--        <menuitem id="nms_bounce_root" name="NMS Import/Export" parent="stock.menu_stock_root" sequence="3" />-->
+        <menuitem id="boost_udef_file" name="Boost UDEF Files" parent="stock.menu_stock_config_settings" action="boost_udef_file_action" sequence="10"/>
+    </data>
+</odoo>

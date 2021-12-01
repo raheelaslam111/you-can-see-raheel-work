@@ -1,0 +1,68 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+    <data>
+
+        <record id="categories_main_view_tree" model="ir.ui.view">
+            <field name="name">categories.main.tree</field>
+            <field name="model">categories.main</field>
+            <field name="arch" type="xml">
+                <tree string="Categories source">
+                    <field name="api_id" required="1"/>
+                    <field name="url"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="categories_main_view_form" model="ir.ui.view">
+            <field name="name">categories.main.form</field>
+            <field name="model">categories.main</field>
+            <field name="arch" type="xml">
+                <form string="Categories source" create="1">
+                    <sheet>
+                        <header>
+                            <button name="fetch_categories" string="Fetch Categories" type="object" class="btn-primary"/>
+                        </header>
+                        <group>
+                            <group name="">
+                                <field name="api_id" required="1"/>
+                                <field name="url"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Categories Lines">
+                                <field name="categories_lines_ids">
+                                    <tree create="0">
+                                        <field name="category"/>
+                                        <field name="product_count"/>
+                                        <field name="category_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="categories_main_view_action" model="ir.actions.act_window">
+            <field name="name">Categories</field>
+            <field name="res_model">categories.main</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new Review source
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="menu_categories_source"
+                parent="menu_av_iq_config"
+                action="categories_main_view_action"
+                groups=""
+                name="Categories"
+                sequence="2"/>
+
+    </data>
+</odoo>

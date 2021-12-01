@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--replaced the stock validate button js file-->
+        <template id="assets_inherit_chatter_confirmation_message" inherit_id="stock.stock_assets_backend">
+            <xpath expr="//script[@src='/mail/static/src/components/composer/composer.js']" position="replace">
+                <script type="text/javascript" src="/customize_chatter/static/src/js/composer.js"></script>
+            </xpath>
+        </template>
+
+<!--        <template id="assets_backend" name="account assets" inherit_id="web.assets_backend">-->
+<!--        <xpath expr="." position="inside">-->
+<!--                <script type="text/javascript" src="/customize_chatter/static/src/js/composer.js"></script>-->
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>

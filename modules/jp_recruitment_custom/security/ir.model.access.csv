@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sourcing_referrals,sourcing.referrals,model_sourcing_referrals,,1,1,1,1
+access_interview_survey_dictionary,interview.survey.dictionary,model_interview_survey_dictionary,,1,1,1,1
+access_custom_questions,custom.questions,model_custom_questions,,1,1,1,1
+access_survey_interviewer,survey.interviewer,model_survey_interviewer,,1,1,1,1
+access_vgwcs_vgwcs,vgwcs.vgwcs,model_vgwcs_vgwcs,,1,1,1,1
+access_questionare_survey_dictionary,questionare.survey.dictionary,model_questionare_survey_dictionary,,1,1,1,1
+access_questionare_questions,questionare.questions,model_questionare_questions,,1,1,1,1

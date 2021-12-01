@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_packaging_date_wizard" model="ir.ui.view">
+        <field name="name">mrp.packaging.date.wizard.form</field>
+        <field name="model">mrp.packaging.date.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="mo_ids" invisible="1"/>
+                    <field name="date_packaging"/>
+                </group>
+                <field name="date_error" invisible="1"/>
+                <footer>
+                    <button name="action_done" string="Done" type="object" class="oe_highlight" attrs="{'invisible': [('date_error', '!=', False)]}"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_popup_message,popup.message,model_popup_message,base.group_user,1,1,1,1
+access_shipping.quote_line,shipping.quote.line,model_shipping_quote_line,base.group_user,1,1,1,1
+access_shipping.quote_line_rates,shipping.quote.line.rates,model_shipping_quote_line_rates,base.group_user,1,1,1,1
+
+
+

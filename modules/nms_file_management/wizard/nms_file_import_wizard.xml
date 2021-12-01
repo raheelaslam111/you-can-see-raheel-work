@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="nms_import_file_wizard_form" model="ir.ui.view">
+			<field name="name">nms.file.import.form.view</field>
+			<field name="model">nms.file.import</field>
+			<field name="arch" type="xml">
+				<form string="Import NMS File">
+                    <group>
+                        <group>
+                            <field name="file" filename="name" required="1"/>
+                        </group>
+                    </group>
+				    <footer>
+
+				        <button name="nms_import_file" string="Import" type="object" class="btn-primary"  t-on-click="_onImportClick"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+				    </footer>
+				</form>
+			</field>
+		</record>
+    </data>
+</odoo>

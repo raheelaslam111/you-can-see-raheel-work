@@ -1,0 +1,21 @@
+<odoo>
+  <data>
+     <record id="view_payment_acquirer_form_inherit" model="ir.ui.view">
+            <field name="name">payment.acquirer.inherit</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_icon_ids']" position="after">
+                    <field name="is_surcharge"/>
+                     <label for="set_surcharge" attrs="{'invisible': [('is_surcharge', '=', False)]}"/>
+                          <div class="o_row" attrs="{'invisible': [('is_surcharge', '=', False)]}">
+                              <field name="set_surcharge"/>
+                              <span>%%</span>
+                          </div>
+                </xpath>
+            </field>
+
+        </record>
+
+  </data>
+</odoo>

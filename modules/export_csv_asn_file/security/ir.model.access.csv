@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nms_csv_attachment_download,nms.csv.attachment.download,model_nms_csv_attachment_download,,1,1,1,1
+

@@ -1,0 +1,120 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+    <data>
+        <record id="product_lines_view_tree" model="ir.ui.view">
+            <field name="name">product.lines.tree</field>
+            <field name="model">product.lines</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="image_spotlight" widget="image"/>
+                    <field name="name"/>
+                    <field name="short_description"/>
+                    <field name="product_main_id" invisible="1"/>
+                    <field name="part_number"/>
+                    <field name="upc_number"/>
+                    <field name="model_number"/>
+                    <field name="manufacturer"/>
+                    <field name="t1cat" invisible="1"/>
+                    <field name="t2cat" invisible="1"/>
+                    <field name="t3cat" invisible="1"/>
+                    <field name="model_number_clean"/>
+                    <field name="msrp" invisible="1"/>
+                    <field name="row" invisible="1"/>
+                    <field name="odoo_product_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_lines_view_form" model="ir.ui.view">
+            <field name="name">product.lines.form</field>
+            <field name="model">product.lines</field>
+            <field name="arch" type="xml">
+                <form create="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="image_spotlight" nolabel="1" widget="image"/>
+                            </group>
+                            <group>
+                            </group>
+                            <group>
+                                <field name="create_product" invisible="1"/>
+                                <field name="name"/>
+                                <field name="part_number"/>
+                                <field name="upc_number"/>
+                            </group>
+                            <group>
+                                <field name="model_number"/>
+                                <field name="manufacturer"/>
+                                <field name="manufacturer_id"/>
+                                <field name="short_description"/>
+                            </group>
+                            <group>
+                                <field name="t1cat"/>
+                                <field name="t2cat"/>
+                                <field name="t3cat"/>
+                                <field name="model_number_clean"/>
+                            </group>
+                            <group>
+                                <field name="msrp"/>
+                                <field name="row"/>
+                                <field name="odoo_product_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Product Specifications">
+                                <field name="product_specs_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_lines_view_search" model="ir.ui.view">
+            <field name="name">product.lines.search</field>
+            <field name="model">product.lines</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="part_number"/>
+                    <field name="upc_number"/>
+                    <field name="model_number"/>
+                    <field name="manufacturer"/>
+                    <field name="short_description"/>
+                    <field name="t1cat"/>
+                    <field name="t2cat"/>
+                    <field name="t3cat"/>
+                    <field name="msrp"/>
+                    <newline/>
+                    <filter name='not_imported' string="Not Imported" domain="[('odoo_product_id','=',False)]"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="product_lines_action" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="res_model">product.lines</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_not_imported':1,
+                }
+            </field>
+            <field name="help" type="html">
+                <p>
+                    Add a new Products from API
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                id="menu_api_product_lines"
+                parent="menu_av_iq_product"
+                action="product_lines_action"
+                groups=""
+                name="AV-IQ Products"
+                sequence="2"/>
+
+    </data>
+</odoo>

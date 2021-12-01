@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_job_position_form_inherit" model="ir.ui.view">
+            <field name="name">hr.job.form.pwx.inherit</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']//button[1]" position="after">
+                    <button name="action_appraisal_jobs_rel" class="oe_stat_button" type="object" icon="fa-star">
+                        <div class="o_stat_info">
+                            <field name="appraisal_count"/>
+                            <span class="o_stat_text">Appraisals</span>
+                        </div>
+                    </button>
+                </xpath>
+                <xpath expr="//notebook" position="before">
+                    <group>
+                        <group>
+                            <field name="id" string="Job Id"/>
+                            <field name="priority" widget="priority" string="Priority"/>
+                            <field name="company_id"/>
+                            <field name="address_id"/>
+                            <field name="job_type"/>
+                            <field name="website_id"/>
+                            <field name="alias_name" string="Email Alias"/>
+                            <field name="tags_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="no_of_recruitment"/>
+                            <field name="department_id" string="Team" help="Department"/>
+                            <field name="hiring_team_id"/>
+                            <field name="user_id" string="Sourcing Manager"/>
+                            <field name="ci_pattern_ids" string="Ideal CI Survey" widget="many2many_tags"/>
+                        </group>
+                        <!--                        <group>-->
+                        <!--                            <field name="interview_survey_dict_ids" nolabel="1">-->
+                        <!--                                <tree>-->
+                        <!--                                    <field name="recruitment_stage_id"/>-->
+                        <!--                                    <field name="survey_id"/>-->
+                        <!--                                </tree>-->
+                        <!--                            </field>-->
+                        <!--                        </group>-->
+                    </group>
+                </xpath>
+                <xpath expr="//notebook//page[1]" position="replace">
+                    <page string="Website Description">
+                        <!--                        <div attrs="{'invisible': [('state', '!=', 'recruit')]}">-->
+                        <!--                            <label for="description"/>-->
+                        <!--                            <field name="description"/>-->
+                        <!--                        </div>-->
+                        <group string="Native Genius" style="text-align:left;">
+                            <!--                            <label for="native_genius" string="Native Genius"/>-->
+                            <field name="native_genius" nolabel="1"/>
+                        </group>
+                        <group string="Job Description" style="text-align:left;">
+                            <!--                            <label for='description' string="job Description"/>-->
+                            <field name="description" nolabel="1"/>
+                        </group>
+                        <group string="Position History" style="text-align:left;">
+                            <!--                            <label for='position_history' string="Position History"/>-->
+                            <field name="position_history" nolabel="1"/>
+                        </group>
+
+                    </page>
+                </xpath>
+                <xpath expr="//notebook//page[1]" position="after">
+<!--                    <page string="Skills &amp; EXP" name="skills_exp">-->
+<!--                        <group string="Skills" style="text-align:center;">-->
+<!--                            <field name="soft_skill_ids" nolabel="1">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="attribute"/>-->
+<!--                                    <field name="description"/>-->
+<!--                                    <field name="attribute_type"/>-->
+<!--                                    <field name="critical"/>-->
+<!--                                    <field name="category"/>-->
+<!--                                    <field name="changeability"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </group>-->
+<!--                        <group string="Experience" style="text-align:center;">-->
+<!--                            <field name="experience" nolabel="1"/>-->
+<!--                        </group>-->
+<!--                    </page>-->
+                    <page string="Goal's/KPI's" name="goals_kpis">
+                        <group string="Career Path" style="text-align:left;">
+                            <field name="career_path" nolabel="1"/>
+                        </group>
+                        <group string="Onboarding Plan" style="text-align:left;">
+                            <field name="onboarding_plan" nolabel="1"/>
+                        </group>
+                    </page>
+                    <page string="Comp" name="comp">
+                        <group string="Comp/Benefits/Perks" style="text-align:left;">
+                            <field name="comp_benefits_perks" nolabel="1"/>
+                        </group>
+                        <group string="Comp/Benefits/Perks Internal Notes" style="text-align:left;">
+                            <field name="comp_benefits_perks_internal_notes" nolabel="1"
+                                   groups="hr_recruitment.group_hr_recruitment_manager,hr_recruitment.group_hr_recruitment_user"/>
+                        </group>
+                    </page>
+                    <page string="Interviews" name="interviews">
+                        <group>
+                            <group string="Interview Form">
+                                <label for="survey_id" groups="survey.group_survey_user"/>
+                                <div groups="survey.group_survey_user" class="o_row">
+                                    <field name="survey_id"
+                                           context="{'default_access_mode': 'token'}"/>
+                                    <button string="Display Interview Form" name="action_print_survey" type="object" attrs="{'invisible':[('survey_id','=',False)]}" class="oe_link"/>
+                                </div>
+                            </group>
+                            <group string="Interview Survey Dictionary">
+                                <field name="interview_survey_dict_ids" nolabel="1">
+                                    <tree default_order="recruitment_stage_id">
+                                        <field name="recruitment_stage_id"/>
+                                        <field name="survey_id"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group string="Questionnaire Survey Dictionary">
+                                <field name="questionare_survey_dict_ids" nolabel="1">
+                                    <tree>
+                                        <field name="recruitment_stage_id"/>
+                                        <field name="survey_id"/>
+                                    </tree>
+                                </field>
+                            </group>
+
+                        </group>
+
+                    </page>
+
+                </xpath>
+                <xpath expr="//notebook[1]" position="inside">
+                    <page string="Intake/Sourcing/Referrals" name="intake_sourcing_referrals"
+                          groups="hr_recruitment.group_hr_recruitment_manager,hr_recruitment.group_hr_recruitment_user">
+<!--                        <label for="co_intro_job_posting" name="Co Intro on Job Posting"/>-->
+                        <group string="Co Intro on Job Posting" name="co_intro_job_posting">
+                            <field name="co_intro_job_posting" nolabel="1"/>
+                        </group>
+                        <field name="sourcing_referrals_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="sourcing"/>
+                                <field name="referrals"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Other" name="other">
+                        <group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="create_uid"/>
+                                <field name="write_date"/>
+                                <field name="write_uid"/>
+                                <field name="__last_update"/>
+                            </group>
+                            <group>
+
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook//page[5]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook//page[6]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="interview_survey_dict_tree">
+            <field name="name">interview.survey.dictionary.tree</field>
+            <field name="model">interview.survey.dictionary</field>
+            <field name="arch" type="xml">
+                <tree string="Interview Survey Dictionary">
+                    <field name="recruitment_stage_id"/>
+                    <field name="survey_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_job_survey_inherit_pwx" model="ir.ui.view">
+            <field name="name">hr.job.form.inherit</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_job_survey"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/group/group/label[@for='survey_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//notebook/page/group/group/div[@class='o_row']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

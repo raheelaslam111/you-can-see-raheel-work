@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="nms_file_management.report_nms_uedf_docs">
+        <tns:edfFileGeneric xmlns:tns="http://integration.sprint.com/interfaces/UEDF/v1/UEDF.xsd">
+            <tns:date><t t-esc="date"/></tns:date>
+            <tns:fileSequence><t t-esc="sequence"/></tns:fileSequence>
+            <tns:totalDeviceCount><t t-esc="len(uedf_data)"/></tns:totalDeviceCount>
+            <tns:headerCount>1</tns:headerCount>
+
+            <tns:edfData>
+                <tns:edfHeader>
+                    <tns:deviceCount><t t-esc="len(uedf_data)"/></tns:deviceCount>
+                    <tns:phoneType>NW</tns:phoneType>
+                    <tns:phoneOwnership>DISH</tns:phoneOwnership>
+                    <tns:transactionType>040</tns:transactionType>
+                    <tns:locationDestination>000</tns:locationDestination>
+                    <tns:uedfRevisionNumber>XMLAUTH</tns:uedfRevisionNumber>
+                </tns:edfHeader>
+
+                <tns:product>
+                    <tns:edfSerialType><t t-esc="serial_type"/></tns:edfSerialType>
+
+                    <tns:skuInfo>
+                        <tns:sku><t t-if="uedf_data" t-esc="uedf_data[0].product_id.product_tmpl_id.default_code"/></tns:sku>
+                        <tns:skuName><t t-if="uedf_data" t-esc="uedf_data[0].product_id.product_tmpl_id.default_code"/></tns:skuName>
+                        <tns:equipType>CP</tns:equipType>
+                        <tns:manufId>436</tns:manufId>
+                        <tns:manufName>APPLE, INC</tns:manufName>
+                        <tns:sfwVer>13</tns:sfwVer>
+                    </tns:skuInfo>
+                    <tns:detail>
+                        <t t-if="uedf_data" t-foreach="uedf_data" t-as="uedf">
+                        <tns:device>
+                            <tns:serialization t-if="serial_type == 'H'">
+                                <tns:meidHex><t t-esc="uedf.meid_hex"/></tns:meidHex>
+                                <tns:meidDec><t t-esc="uedf.meid_dec"/></tns:meidDec>
+                                <tns:imeiDec><t t-esc="uedf.imei"/></tns:imeiDec>
+                            </tns:serialization>
+                            <tns:serialization t-if="serial_type == 'H3'">
+                                <tns:imeiDec><t t-esc="uedf.imei"/></tns:imeiDec>
+                            </tns:serialization>
+                             <tns:serialization t-if="serial_type == 'H5'">
+                                <tns:meidHex><t t-esc="uedf.meid_hex"/></tns:meidHex>
+                                <tns:meidDec><t t-esc="uedf.meid_dec"/></tns:meidDec>
+                                 <tns:imeiDec><t t-esc="uedf.imei"/></tns:imeiDec>
+                                 <tns:imeiDec2><t t-esc="uedf.imei2"/></tns:imeiDec2>
+                            </tns:serialization>
+                            <tns:authentication>
+                                <tns:msl>000000</tns:msl>
+                                <tns:otksl>000000</tns:otksl>
+                            </tns:authentication>
+                        </tns:device>
+                        </t>
+                    </tns:detail>
+                </tns:product>
+            </tns:edfData>
+        </tns:edfFileGeneric>
+    </template>
+
+<!--Report for UDF NMS-->
+
+    <template id="nms_file_management.report_nms_uedf_asn_docs">
+        <tns:edfFileGeneric xmlns:tns="http://integration.sprint.com/interfaces/UEDF/v1/UEDF.xsd">
+            <tns:date><t t-esc="current_date"/></tns:date>
+            <tns:fileSequence><t t-esc="sequence"/></tns:fileSequence>
+            <t t-set="device_count" t-value="0"/>
+            <tns:totalDeviceCount><t t-esc="total_count"/></tns:totalDeviceCount>
+            <tns:headerCount>1</tns:headerCount>
+
+            <tns:edfData>
+                <tns:edfHeader>
+                    <tns:deviceCount><t t-esc="total_count"/></tns:deviceCount>
+                    <tns:phoneType>RW</tns:phoneType>
+                    <tns:phoneOwnership>DISH</tns:phoneOwnership>
+                    <tns:transactionType>010</tns:transactionType>
+                    <tns:poOrder><t t-if="origin" t-esc="origin"/></tns:poOrder>
+                    <tns:factOrder><t t-if="list_fact_seq" t-esc="list_fact_seq"/></tns:factOrder>
+                    <tns:locationDestination>022</tns:locationDestination>
+                    <tns:uedfRevisionNumber>XMLAUTH</tns:uedfRevisionNumber>
+                </tns:edfHeader>
+
+                <tns:product>
+                    <tns:edfSerialType><t t-if="product_id.h_type" t-esc="product_id.h_type"/></tns:edfSerialType>
+
+                    <tns:skuInfo>
+                        <tns:sku><t t-if="product_id.product_tmpl_id.default_code" t-esc="product_id.product_tmpl_id.default_code"/></tns:sku>
+                        <tns:skuName><t t-if="product_id.product_tmpl_id.default_code" t-esc="product_id.product_tmpl_id.default_code"/></tns:skuName>
+                        <tns:equipType>CP</tns:equipType>
+                        <tns:manufId>436</tns:manufId>
+                        <tns:manufName>APPLE, INC</tns:manufName>
+                        <tns:sfwVer>13</tns:sfwVer>
+                    </tns:skuInfo>
+                    <t t-foreach="uedf_data" t-as="uedf_m">
+                    <tns:detail>
+                        <tns:shipping>
+                        <tns:lpn><t t-esc="uedf_data[uedf_m].get('parent_package_name',False)"/></tns:lpn>
+                        <tns:carton><t t-esc="uedf_data[uedf_m].get('package_name',False)"/></tns:carton>
+                        </tns:shipping>
+
+
+            <t t-foreach="uedf_data[uedf_m].get('product_line_list')" t-as="uedf">
+                <t t-set="device_count" t-value="device_count + 1"/>
+                            <tns:device>
+                                <tns:serialization>
+                                    <t t-if="product_id.h_type =='H'">
+                                        <tns:meidHex><t t-if="uedf.lot_id.meid_hex" t-esc="uedf.lot_id.meid_hex"/></tns:meidHex>
+                                        <tns:meidDec><t t-if="uedf.lot_id.meid_dec" t-esc="uedf.lot_id.meid_dec"/></tns:meidDec>
+                                        <tns:imeiDec><t t-if="uedf.lot_id.imei" t-esc="uedf.lot_id.imei"/></tns:imeiDec>
+                                    </t>
+                                    <t t-if="product_id.h_type =='H3'">
+                                        <tns:imeiDec><t t-if="uedf.lot_id.imei" t-esc="uedf.lot_id.imei"/></tns:imeiDec>
+                                    </t>
+                                    <t t-if="product_id.h_type =='H5'">
+                                        <tns:meidHex><t t-if="uedf.lot_id.meid_hex" t-esc="uedf.lot_id.meid_hex"/></tns:meidHex>
+                                        <tns:meidDec><t t-if="uedf.lot_id.meid_dec" t-esc="uedf.lot_id.meid_dec"/></tns:meidDec>
+                                        <tns:imeiDec><t t-if="uedf.lot_id.imei" t-esc="uedf.lot_id.imei"/></tns:imeiDec>
+                                        <tns:imeiDec2><t t-if="uedf.lot_id.imei2" t-esc="uedf.lot_id.imei2"/></tns:imeiDec2>
+                                    </t>
+                                </tns:serialization>
+                                <tns:authentication>
+                                <tns:msl>000000</tns:msl>
+                                <tns:otksl>000000</tns:otksl>
+                                </tns:authentication>
+                            </tns:device>
+            </t>
+
+                    </tns:detail>
+                    </t>
+                </tns:product>
+            </tns:edfData>
+        </tns:edfFileGeneric>
+    </template>
+</odoo>

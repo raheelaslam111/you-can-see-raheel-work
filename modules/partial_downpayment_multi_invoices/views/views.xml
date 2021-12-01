@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="view_sale_advance_payment_partial_down_payment_deduct" model="ir.ui.view">
+            <field name="name">Invoice Orders down payment</field>
+            <field name="model">sale.advance.payment.inv</field>
+            <field name="inherit_id" ref="sale.view_sale_advance_payment_inv"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='down_payment_details']" position="inside">
+                    <br/>
+                    <br/>
+                    <br/>
+                     <div class="oe_left" attrs="{'invisible': [('deduct_down_payments', '!=', True)]}"
+                            id="down_payment_details">
+<!--                         <label for="down_payment_total"/>-->
+                            <field name="down_payment_total" invisible="1"/>
+<!--                         <br/>-->
+<!--                         <label for="down_payment_applied"/>-->
+                            <field name="down_payment_applied" invisible="1"/>
+                     <br/>
+                         <label for="down_payment_remaining"/>
+                            <field name="down_payment_remaining"/>
+                     <br/>
+                     <br/>
+                         <label for="apply_down_payment"/>
+                            <field name="apply_down_payment"/>
+
+                        </div>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_order_form_down_payment_inherit">
+            <field name="name">sale.order.form.down.payment</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='sale_info']" position="inside">
+                    <field name="down_payment_total"/>
+                    <field name="down_payment_applied"/>
+                    <field name="down_payment_remaining"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

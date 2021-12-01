@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record id="mrp_production_form_view_date" model="ir.ui.view">
+            <field name="name">mrp_production_form_view_packaging_date</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//button[@name='button_mark_done']" position="attributes">
+                    <attribute name="name">button_add_packaging_date</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_mark_done'][1]" position="attributes">
+                    <attribute name="name">button_add_packaging_date</attribute>
+                </xpath>
+                 -->
+                <field name="user_id" position="before">
+                    <field name="packaging_date" readonly="1"/>
+                    <!--<field name="latest_expected_availability" invisible="1"/>
+                    <field name="expected_av_noav" invisible="1"/>-->
+                </field>
+      
+            </field>
+        </record>
+        <record id="mrp_production_tree_view" model="ir.ui.view">
+            <field name="name">mrp_production_tree_view_packaging_date</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="packaging_date" readonly="1"/>
+                </field>
+               <!-- <field name="reservation_state" position="after">
+                    <field name="expected_av_noav"/>
+                    <field name="latest_expected_availability"/>
+                </field>-->
+            </field>
+        </record>
+        
+    </data>
+</odoo>

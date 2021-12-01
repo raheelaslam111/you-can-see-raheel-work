@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+    <menuitem id="menu_av_iq_product"
+            name="AV-IQ products"
+            web_icon="av_iq_product,static/description/menu.png"/>
+
+    <menuitem id="menu_av_iq_config"
+            name="Configuration"
+            parent="menu_av_iq_product"
+            sequence="6"
+            groups=""/>
+
+
+    </data>
+</odoo>
